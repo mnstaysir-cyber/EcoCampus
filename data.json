@@ -1,0 +1,35 @@
+{
+  "mesures": [
+    {"id": 7, "batiment": "BatC", "ressource": "electricite", "valeur": 1250.75, "unite": "kWh", "date": "2026-09-01", "alerte": true},
+    {"id": 20, "batiment": "BatB", "ressource": "electricite", "valeur": 1100.00, "unite": "kWh", "date": "2026-09-03", "alerte": true},
+    {"id": 12, "batiment": "BatB", "ressource": "electricite", "valeur": 1010.20, "unite": "kWh", "date": "2026-09-02", "alerte": true},
+    {"id": 4, "batiment": "BatB", "ressource": "electricite", "valeur": 980.00, "unite": "kWh", "date": "2026-09-01", "alerte": false},
+    {"id": 14, "batiment": "BatC", "ressource": "electricite", "valeur": 890.00, "unite": "kWh", "date": "2026-09-02", "alerte": false},
+    {"id": 10, "batiment": "BatA", "ressource": "electricite", "valeur": 455.00, "unite": "kWh", "date": "2026-09-02", "alerte": false},
+    {"id": 19, "batiment": "BatA", "ressource": "electricite", "valeur": 430.00, "unite": "kWh", "date": "2026-09-03", "alerte": false},
+    {"id": 1, "batiment": "BatA", "ressource": "electricite", "valeur": 420.50, "unite": "kWh", "date": "2026-09-01", "alerte": false},
+    {"id": 16, "batiment": "BatA", "ressource": "gaz", "valeur": 340.00, "unite": "m3", "date": "2026-09-03", "alerte": true},
+    {"id": 6, "batiment": "BatB", "ressource": "gaz", "valeur": 310.00, "unite": "m3", "date": "2026-09-01", "alerte": true},
+    {"id": 13, "batiment": "BatB", "ressource": "gaz", "valeur": 280.00, "unite": "m3", "date": "2026-09-02", "alerte": false},
+    {"id": 11, "batiment": "BatA", "ressource": "eau", "valeur": 230.00, "unite": "m3", "date": "2026-09-02", "alerte": true},
+    {"id": 3, "batiment": "BatA", "ressource": "gaz", "valeur": 150.25, "unite": "m3", "date": "2026-09-01", "alerte": false},
+    {"id": 5, "batiment": "BatB", "ressource": "eau", "valeur": 120.40, "unite": "m3", "date": "2026-09-01", "alerte": false},
+    {"id": 17, "batiment": "BatB", "ressource": "eau", "valeur": 110.00, "unite": "m3", "date": "2026-09-03", "alerte": false},
+    {"id": 18, "batiment": "BatC", "ressource": "gaz", "valeur": 101.00, "unite": "m3", "date": "2026-09-03", "alerte": false},
+    {"id": 9, "batiment": "BatC", "ressource": "gaz", "valeur": 95.50, "unite": "m3", "date": "2026-09-01", "alerte": false},
+    {"id": 2, "batiment": "BatA", "ressource": "eau", "valeur": 85.00, "unite": "m3", "date": "2026-09-01", "alerte": false},
+    {"id": 15, "batiment": "BatC", "ressource": "eau", "valeur": 75.30, "unite": "m3", "date": "2026-09-02", "alerte": false},
+    {"id": 8, "batiment": "BatC", "ressource": "eau", "valeur": 60.00, "unite": "m3", "date": "2026-09-01", "alerte": false}
+  ],
+  "statistiques": [
+    {"batiment": "BatC", "ressource": "electricite", "nb": 2, "total": 2140.75, "moyenne": 1070.38, "min": 890.00, "max": 1250.75},
+    {"batiment": "BatB", "ressource": "electricite", "nb": 3, "total": 3090.20, "moyenne": 1030.07, "min": 980.00, "max": 1100.00},
+    {"batiment": "BatA", "ressource": "electricite", "nb": 3, "total": 1305.50, "moyenne": 435.17, "min": 420.50, "max": 455.00},
+    {"batiment": "BatA", "ressource": "gaz", "nb": 2, "total": 490.25, "moyenne": 245.12, "min": 150.25, "max": 340.00},
+    {"batiment": "BatB", "ressource": "gaz", "nb": 2, "total": 590.00, "moyenne": 295.00, "min": 280.00, "max": 310.00},
+    {"batiment": "BatA", "ressource": "eau", "nb": 2, "total": 315.00, "moyenne": 157.50, "min": 85.00, "max": 230.00},
+    {"batiment": "BatB", "ressource": "eau", "nb": 2, "total": 230.40, "moyenne": 115.20, "min": 110.00, "max": 120.40},
+    {"batiment": "BatC", "ressource": "gaz", "nb": 2, "total": 196.50, "moyenne": 98.25, "min": 95.50, "max": 101.00},
+    {"batiment": "BatC", "ressource": "eau", "nb": 2, "total": 135.30, "moyenne": 67.65, "min": 60.00, "max": 75.30}
+  ]
+}
