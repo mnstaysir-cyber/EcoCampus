@@ -1,0 +1,4 @@
+module_c
+*.o
+*.exe
+.vscode/
