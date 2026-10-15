@@ -1,5 +1,5 @@
 module c (2/2) anomalies,statistiques,export JSON 
-/* analyse.c - Anomalies, statistiques et export
+/*  analyse.c - Anomalies, statistiques et export
  * Auteur : Talhaoui Ghofrane (Module C 2/2)
  */
 #include <stdio.h>
