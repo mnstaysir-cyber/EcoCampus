@@ -1,1 +1,279 @@
 
+:root {
+    --primary: #176b4d;
+    --light: #e8f5ee;
+    --background: #f4f7f5;
+    --white: #ffffff;
+    --text: #263b30;
+    --muted: #78877e;
+    --danger: #dc4444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: var(--background);
+    color: var(--text);
+}
+
+/* Header */
+
+header {
+    background: var(--primary);
+    color: white;
+    padding: 20px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo span {
+    font-size: 35px;
+}
+
+.logo p {
+    font-size: 13px;
+    opacity: .8;
+}
+
+.status {
+    color: #c5f5d8;
+    font-size: 13px;
+}
+
+/* Main */
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+.welcome {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.welcome h2 {
+    margin-bottom: 8px;
+}
+
+.welcome p {
+    color: var(--muted);
+}
+
+button {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Statistics */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: var(--white);
+    padding: 22px;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary);
+    box-shadow: 0 3px 12px #00000008;
+}
+
+.stat-card span {
+    font-size: 25px;
+}
+
+.stat-card p {
+    margin: 12px 0;
+    color: var(--muted);
+}
+
+.stat-card h2 {
+    font-size: 25px;
+}
+
+.alert-card {
+    border-left-color: var(--danger);
+}
+
+/* Panels */
+
+.panel {
+    background: var(--white);
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px #00000008;
+}
+
+.panel h2 {
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+
+/* Filters */
+
+.filters {
+    display: flex;
+    gap: 15px;
+}
+
+input, select {
+    padding: 13px;
+    border: 1px solid #dce5df;
+    border-radius: 8px;
+    font-size: 14px;
+    background: white;
+}
+
+input {
+    flex: 1;
+}
+
+select {
+    min-width: 190px;
+}
+
+/* Buildings */
+
+.buildings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.building-card {
+    border: 1px solid #e3ebe5;
+    padding: 18px;
+    border-radius: 10px;
+}
+
+.building-card h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.building-card p {
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.normal, .alert {
+    display: inline-block;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.normal {
+    background: var(--light);
+    color: var(--primary);
+}
+
+.alert {
+    background: #fff0f0;
+    color: var(--danger);
+}
+
+/* Chart */
+
+.chart-container {
+    height: 350px;
+    position: relative;
+}
+
+/* Table */
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    min-width: 650px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 14px;
+    text-align: left;
+    border-bottom: 1px solid #e8eee9;
+    font-size: 14px;
+}
+
+th {
+    background: var(--light);
+    color: var(--primary);
+}
+
+/* Footer */
+
+footer {
+    text-align: center;
+    padding: 22px;
+    color: var(--muted);
+}
+
+/* Responsive */
+
+@media (max-width: 850px) {
+    .stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .buildings-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    header {
+        padding: 15px;
+    }
+
+    .container {
+        padding: 20px 12px;
+    }
+
+    .welcome {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filters {
+        flex-direction: column;
+    }
+
+    .stats, .buildings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    select {
+        width: 100%;
+    }
+}
+
