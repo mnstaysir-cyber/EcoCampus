@@ -19,7 +19,7 @@ function esc(s) {
 // ---------- Chargement ----------
 async function charger() {
   try {
-    const rep = await fetch("data.json");
+    const rep = await fetch("../data.json");
     if (!rep.ok) throw new Error("Fichier data.json introuvable (HTTP " + rep.status + ")");
     traiter(await rep.json());
   } catch (e) {
