@@ -1,1 +1,144 @@
 
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoCampus - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">
+        <span>🌱</span>
+        <div>
+            <h1>EcoCampus</h1>
+            <p>Gestion intelligente de l'énergie</p>
+        </div>
+    </div>
+    <span class="status">● Système actif</span>
+</header>
+
+<main class="container">
+
+    <section class="welcome">
+        <div>
+            <h2>Tableau de bord</h2>
+            <p>Suivi de la consommation énergétique du campus.</p>
+        </div>
+        <button id="refreshBtn">↻ Actualiser</button>
+    </section>
+
+    <!-- Statistiques -->
+    <section class="stats">
+
+        <article class="stat-card">
+            <span>🏢</span>
+            <p>Bâtiments</p>
+            <h2 id="buildingCount">0</h2>
+        </article>
+
+        <article class="stat-card">
+            <span>📊</span>
+            <p>Nombre de mesures</p>
+            <h2 id="measurementCount">0</h2>
+        </article>
+
+        <article class="stat-card">
+            <span>⚡</span>
+            <p>Consommation électrique</p>
+            <h2 id="electricityTotal">0</h2>
+        </article>
+
+        <article class="stat-card alert-card">
+            <span>🚨</span>
+            <p>Anomalies</p>
+            <h2 id="alertCount">0</h2>
+        </article>
+
+    </section>
+
+    <!-- Recherche et filtres -->
+    <section class="panel">
+
+        <h2>Recherche et filtrage</h2>
+
+        <div class="filters">
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Rechercher un bâtiment..."
+            >
+
+            <select id="resourceFilter">
+                <option value="all">Toutes les ressources</option>
+            </select>
+
+            <input type="date" id="dateFilter">
+
+        </div>
+
+    </section>
+
+    <!-- Bâtiments -->
+    <section class="panel">
+
+        <h2>Consommation des bâtiments</h2>
+
+        <div id="buildingsContainer" class="buildings-grid">
+            Chargement des données...
+        </div>
+
+    </section>
+
+    <!-- Graphique -->
+    <section class="panel">
+
+        <h2>Graphique de consommation</h2>
+
+        <div class="chart-container">
+            <canvas id="consumptionChart"></canvas>
+        </div>
+
+    </section>
+
+    <!-- Tableau -->
+    <section class="panel">
+
+        <h2>Historique des mesures</h2>
+
+        <div class="table-wrapper">
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bâtiment</th>
+                        <th>Ressource</th>
+                        <th>Valeur</th>
+                        <th>Unité</th>
+                        <th>Date</th>
+                        <th>État</th>
+                    </tr>
+                </thead>
+
+                <tbody id="measurementsTable"></tbody>
+            </table>
+
+        </div>
+
+    </section>
+
+</main>
+
+<footer>
+    EcoCampus © 2026 - 2027 | Module Web
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
