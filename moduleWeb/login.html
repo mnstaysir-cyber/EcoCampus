@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Connexion — Gestion de consommation</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/theme.js"></script>
+</head>
+<body class="page-connexion">
+
+  <!-- Mode clair / sombre -->
+  <button type="button" class="bouton bouton-secondaire bouton-theme" data-bouton-theme aria-pressed="false">
+    <span class="icone-theme" aria-hidden="true">☾</span><span class="texte-theme">Mode sombre</span>
+  </button>
+
+  <main class="carte-connexion">
+
+    <!-- Partie gauche : présentation (en haut sur téléphone) -->
+    <section class="panneau-marque">
+      <h1 class="marque">Conso<span>Suivi</span></h1>
+      <p>Suivi de la consommation des bâtiments du campus.</p>
+      <ul class="liste-ressources">
+        <li class="ressource ressource-elec">Électricité</li>
+        <li class="ressource ressource-eau">Eau</li>
+        <li class="ressource ressource-gaz">Gaz</li>
+      </ul>
+    </section>
+
+    <!-- Partie droite : formulaires -->
+    <section class="panneau-formulaire">
+
+    <!-- Onglets : Connexion / Inscription -->
+    <div class="onglets" role="tablist">
+      <button type="button" class="onglet actif" data-onglet="connexion" role="tab">Connexion</button>
+      <button type="button" class="onglet" data-onglet="inscription" role="tab">Créer un compte</button>
+    </div>
+
+    <p id="message" class="message" hidden></p>
+
+    <!-- Formulaire de connexion -->
+    <form id="form-connexion" class="formulaire">
+      <label>Email
+        <input type="email" id="connexion-email" required autocomplete="email" placeholder="nom@exemple.com">
+      </label>
+      <label>Mot de passe
+        <input type="password" id="connexion-mdp" required autocomplete="current-password">
+      </label>
+      <button type="submit" class="bouton bouton-principal bouton-large">Se connecter</button>
+    </form>
+
+    <!-- Formulaire d'inscription -->
+    <form id="form-inscription" class="formulaire" hidden>
+      <label>Nom complet
+        <input type="text" id="inscription-nom" required autocomplete="name">
+      </label>
+      <label>Email
+        <input type="email" id="inscription-email" required autocomplete="email" placeholder="nom@exemple.com">
+      </label>
+      <label>Mot de passe (6 caractères minimum)
+        <input type="password" id="inscription-mdp" required minlength="6" autocomplete="new-password">
+      </label>
+      <label>Confirmer le mot de passe
+        <input type="password" id="inscription-confirmation" required minlength="6" autocomplete="new-password">
+      </label>
+      <button type="submit" class="bouton bouton-principal bouton-large">Créer le compte</button>
+    </form>
+
+    </section>
+  </main>
+
+  <script src="js/stockage.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>
