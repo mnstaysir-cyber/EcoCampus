@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gestion de consommation</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/theme.js"></script>
+</head>
+<body>
+
+<div class="application">
+
+  <!-- ===================== SIDEBAR ===================== -->
+  <aside class="sidebar" id="sidebar">
+    <h1 class="marque">Conso<span>Suivi</span></h1>
+
+    <nav class="navigation">
+      <button class="lien-nav actif" data-vue="tableau-de-bord">Tableau de bord</button>
+      <button class="lien-nav" data-vue="anomalies">
+        Anomalies <span class="pastille" id="nombre-anomalies">0</span>
+      </button>
+      <button class="lien-nav" data-vue="gestion">Gestion des données</button>
+      <button class="lien-nav" data-vue="profil">Mon profil</button>
+    </nav>
+
+    <!-- Import / export de data.json -->
+    <div class="bloc-fichiers">
+      <p class="titre-bloc">Fichiers</p>
+      <label class="bouton bouton-sidebar">
+        Importer data.json
+        <input type="file" id="import-donnees" accept=".json" hidden>
+      </label>
+      <button class="bouton bouton-sidebar" id="export-donnees">Exporter data.json</button>
+    </div>
+
+    <div class="bloc-utilisateur">
+      <p id="nom-utilisateur"></p>
+      <button type="button" class="bouton bouton-sidebar bouton-theme" data-bouton-theme aria-pressed="false">
+        <span class="icone-theme" aria-hidden="true">☾</span><span class="texte-theme">Mode sombre</span>
+      </button>
+      <button class="bouton bouton-sidebar" id="deconnexion">Se déconnecter</button>
+    </div>
+  </aside>
+
+  <!-- Fond sombre derrière la sidebar sur mobile -->
+  <div class="voile" id="voile"></div>
+
+  <!-- ===================== CONTENU ===================== -->
+  <div class="contenu">
+
+    <header class="entete">
+      <button class="bouton-menu" id="bouton-menu" aria-label="Ouvrir le menu">☰</button>
+      <h2 id="titre-vue">Tableau de bord</h2>
+    </header>
+
+    <!-- F3 à F6 : recherche et filtres (communs à toutes les vues) -->
+    <section class="filtres">
+      <label>Rechercher
+        <input type="search" id="filtre-texte" placeholder="BatA, eau, 2026-09…">
+      </label>
+      <label>Bâtiment
+        <select id="filtre-batiment"><option value="">Tous</option></select>
+      </label>
+      <label>Ressource
+        <select id="filtre-ressource"><option value="">Toutes</option></select>
+      </label>
+      <label>Du
+        <input type="date" id="filtre-debut">
+      </label>
+      <label>Au
+        <input type="date" id="filtre-fin">
+      </label>
+      <button class="bouton bouton-secondaire" id="reinitialiser">Effacer les filtres</button>
+    </section>
+
+    <!-- ===== Vue 1 : Tableau de bord (F1 + F7) ===== -->
+    <section class="vue" id="vue-tableau-de-bord">
+      <div class="resume" id="resume"></div>
+
+      <div class="panneau">
+        <h3 id="titre-graphique">Consommation</h3>
+        <div class="zone-graphique">
+          <canvas id="graphique" role="img" aria-label="Graphique de consommation"></canvas>
+        </div>
+        <ul class="legende-graphique" id="legende-graphique"></ul>
+      </div>
+
+      <div class="panneau">
+        <h3>Statistiques par bâtiment et ressource</h3>
+        <div class="defilement">
+          <table>
+            <thead>
+              <tr><th>Bâtiment</th><th>Ressource</th><th>Nombre</th><th>Total</th><th>Moyenne</th><th>Min</th><th>Max</th></tr>
+            </thead>
+            <tbody id="tableau-statistiques"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panneau">
+        <h3>Toutes les mesures</h3>
+        <div class="defilement">
+          <table>
+            <thead>
+              <tr><th>Date</th><th>Bâtiment</th><th>Ressource</th><th>Consommation</th><th>État</th></tr>
+            </thead>
+            <tbody id="tableau-donnees"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Vue 2 : Anomalies (F2) ===== -->
+    <section class="vue" id="vue-anomalies" hidden>
+      <div class="panneau">
+        <h3>Mesures anormales</h3>
+        <p class="aide" id="aide-seuils"></p>
+        <div class="defilement">
+          <table>
+            <thead>
+              <tr><th>Date</th><th>Bâtiment</th><th>Ressource</th><th>Consommation</th><th>Raison</th></tr>
+            </thead>
+            <tbody id="tableau-anomalies"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Vue 3 : Gestion des données (CRUD) ===== -->
+    <section class="vue" id="vue-gestion" hidden>
+      <div class="panneau">
+        <div class="titre-panneau">
+          <h3>Mesures enregistrées</h3>
+          <button class="bouton bouton-principal" id="bouton-ajouter">Ajouter une mesure</button>
+        </div>
+        <div class="defilement">
+          <table>
+            <thead>
+              <tr><th>Date</th><th>Bâtiment</th><th>Ressource</th><th>Consommation</th><th>Actions</th></tr>
+            </thead>
+            <tbody id="tableau-gestion"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Vue 4 : Mon profil (compte enregistré dans le localStorage) ===== -->
+    <section class="vue" id="vue-profil" hidden>
+      <div class="profil">
+
+        <!-- Informations actuelles -->
+        <div class="panneau carte-profil">
+          <div class="avatar" id="profil-initiales" aria-hidden="true"></div>
+          <div>
+            <p class="profil-nom" id="profil-nom"></p>
+            <p class="profil-email" id="profil-email"></p>
+          </div>
+        </div>
+
+        <!-- Modification -->
+        <div class="panneau">
+          <h3>Modifier mes informations</h3>
+          <form id="form-profil" class="formulaire">
+            <p id="profil-message" class="message" hidden></p>
+
+            <label>Nom complet
+              <input type="text" id="profil-champ-nom" required autocomplete="name">
+            </label>
+            <label>Email
+              <input type="email" id="profil-champ-email" required autocomplete="email">
+            </label>
+
+            <fieldset class="groupe">
+              <legend>Changer le mot de passe (facultatif)</legend>
+              <label>Nouveau mot de passe (6 caractères minimum)
+                <input type="password" id="profil-nouveau-mdp" minlength="6" autocomplete="new-password">
+              </label>
+              <label>Confirmer le nouveau mot de passe
+                <input type="password" id="profil-confirmation" minlength="6" autocomplete="new-password">
+              </label>
+            </fieldset>
+
+            <label>Mot de passe actuel, pour confirmer les changements
+              <input type="password" id="profil-mdp-actuel" required autocomplete="current-password">
+            </label>
+
+            <div class="actions-formulaire">
+              <button type="button" class="bouton bouton-secondaire" id="profil-annuler">Annuler les changements</button>
+              <button type="submit" class="bouton bouton-principal">Enregistrer les modifications</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ===================== FORMULAIRE AJOUT / MODIFICATION DE MESURE ===================== -->
+<dialog id="fenetre-formulaire">
+  <form id="form-mesure" class="formulaire">
+    <h3 id="titre-formulaire">Ajouter une mesure</h3>
+
+    <label>Bâtiment
+      <input type="text" id="champ-batiment" list="liste-batiments" placeholder="BatA" required>
+      <datalist id="liste-batiments"></datalist>
+    </label>
+    <label>Ressource
+      <select id="champ-ressource" required></select>
+    </label>
+    <label>Date
+      <input type="date" id="champ-date" required>
+    </label>
+    <label>Consommation (<span id="champ-unite">kWh</span>)
+      <input type="number" id="champ-valeur" step="0.01" min="0" required>
+    </label>
+
+    <div class="actions-formulaire">
+      <button type="button" class="bouton bouton-secondaire" id="bouton-annuler">Annuler</button>
+      <button type="submit" class="bouton bouton-principal">Enregistrer</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Message de confirmation (toast) -->
+<div class="toast" id="toast" hidden></div>
+
+<script src="js/stockage.js"></script>
+<script src="js/graphique.js"></script>
+<script src="js/crud.js"></script>
+<script src="js/profil.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
